@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Quiz App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@300&display=swap">
+    <style>
+        body {
+			background-color: rgb(244, 252, 255);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            color: #333333;
+        }
+        
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-bottom: 2em;
+            font-size: 1.5em;
+            margin-top: 1em;
+            color: #333333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 0.5em;
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            border: none;
+            border-radius: 0.5em;
+            box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
+            background-color: #f2f2f2;
+            color: #333333;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        button {
+            padding: 0.5em 1em;
+            font-size: 1.2em;
+            margin-top: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0.5em;
+            box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to the Quiz App!</h1>
+        <div class="form">
+            <label for="name">Name:</label>
+            <input type="text" id="name">
+            <label for="age">Age:</label>
+            <input type="number" id="age" min="1" max="15">
+            <a href="./quiz.html"><button>Start Quiz</button></a>
+        </div>
+        <h1>Made By Azaan Ullah Khan</h1>
+    </div>
+</body>
+
+</html>

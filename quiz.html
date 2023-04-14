@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>JavaScript Quiz Game || Ramadan Edition</title>
+	<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@300&display=swap"
+		rel="stylesheet">
+	<style>
+		* {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		body {
+			display: flex;
+			align-items: center;
+			height: 70vh;
+			overflow: hidden;
+			flex-direction: column;
+			background-color: rgb(244, 252, 255);
+		}
+
+		.main {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			background-color: rgb(255, 255, 255);
+			border-radius: 20px;
+			padding: 10px;
+			margin: 0 auto;
+			margin-top: 2em;
+			width: 40%;
+		}
+
+		h1 {
+			margin: 0;
+			padding: 10px;
+			background-color: rgb(0, 0, 0);
+			color: white;
+			border-radius: 10px;
+			width: 90%;
+			text-align: center;
+			font-weight: lighter;
+			font-family: 'Kaushan';
+		}
+
+		.btn {
+			width: 90%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 15px;
+		}
+
+		.btn button {
+			width: 30%;
+			color: black;
+			background-color: transparent;
+			border: 1px solid black;
+			padding: 10px;
+			font-weight: bolder;
+			border-radius: 20px;
+			transition: transform .5s ease;
+		}
+
+		.btn button:hover {
+			width: 30%;
+			transform: translateY(-5px);
+			background-color: black;
+			color: white;
+			padding: 10px;
+			font-weight: bolder;
+			border-radius: 20px;
+			cursor: pointer;
+		}
+
+		#question {
+			padding: 15px;
+			font-weight: bolder;
+			color: black;
+			text-align: center;
+		}
+
+		#choices {
+			padding: 10px;
+			line-height: 30px;
+		}
+
+		#marks {
+			padding: 10px;
+			border: 1px solid black;
+			color: black;
+			width: 100%;
+			margin: 10px 0;
+			border-radius: 10px;
+			text-align: center;
+			height: 20px;
+			border: 7px solid rgb(180, 180, 180);
+			background-color: rgb(244, 252, 255);
+			color: green;
+			font-weight: bolder;
+			transition: all 1s ease;
+			opacity: 0;
+		}
+
+		.result {
+			width: 40%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#circle {
+			opacity: 0;
+			font-weight: bolder;
+			font-size: 20px;
+			transition: all 1s ease;
+			border-radius: 50%;
+			padding: 30px;
+			border: 7px solid rgb(180, 180, 180);
+			color: green;
+			background-color: rgb(244, 252, 255);
+		}
+
+		.button {
+			padding: 0.5em 1em;
+			font-size: 1.2em;
+			margin-top: 1em;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 0.5em;
+			box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
+			cursor: pointer;
+			transition: all 0.2s ease-in-out;
+		}
+
+		.button:hover {
+			background-color: #3e8e41;
+			transform: translateY(-3px);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="main">
+		<h1>Islamic Quiz Game</h1>
+		<div id="question"></div>
+		<div id="choices"></div>
+		<div class="btn">
+			<button onclick="checkAnswer()">Submit Answer</button>
+			<button onclick="restart()">Restart Test</button>
+			<button onclick="show()">✔</button>
+		</div>
+	</div>
+	<div class="result">
+		<span id="marks"></span>
+		<div id="circle"></div>
+	</div>
+	<a href="./index.html"><button class="button">Back Home</button></a>
+
+
+	<script>
+		// Define the quiz questions and answers
+		var questions = [
+			{
+				question: "What is the first month of the Islamic calendar?",
+				choices: ["Muharram", "Ramadan", "Shawwal", "Rabi' al-awwal"],
+				answer: 0
+			},
+
+			{
+				question: "What is the significance of the month of Ramadan?",
+				choices: ["It is the month of fasting", "It is the month of Eid al-Fitr", "It is the month of Hajj", "It is the month of charity"],
+				answer: 0
+			},
+
+			{
+				question: "What is the name of the Islamic holy book?",
+				choices: ["Bible", "Torah", "Quran", "Vedas"],
+				answer: 2
+			},
+
+			{
+				question: "What is the meaning of the word 'Islam'?",
+				choices: ["Peace", "Salvation", "Submission", "Love"],
+				answer: 2
+			},
+
+			{
+				question: "What is the name of the pilgrimage to Mecca that all Muslims are required to make at least once in their lifetime?",
+				choices: ["Zakat", "Hajj", "Ramadan", "Eid"],
+				answer: 1
+			},
+
+			{
+				question: "What is the name of the Islamic declaration of faith?",
+				choices: ["Shahada", "Salah", "Hajj", "Zakat"],
+				answer: 0
+			},
+
+			{
+				question: "Who was the final prophet of Islam?",
+				choices: ["Musa (A.S)", "Essa (A.S)", "Ibraham (A.S)", "Muhammad (S.A.W)"],
+				answer: 3
+			},
+
+			{
+				question: "What is the name of the Islamic month of fasting?",
+				choices: ["Shawwal", "Muharram", "Ramadan", "Rabi' al-awwal"],
+				answer: 2
+			},
+
+			{
+				question: "What is the name of the Islamic prayer ritual performed five times a day?",
+				choices: ["Zakat", "Hajj", "Salah", "Fasting"],
+				answer: 2
+			},
+
+			{
+				question: "What is the name of the Islamic holiday that celebrates the end of Ramadan?",
+				choices: ["Eid al-Adha", "Eid al-Fitr", "Ashura", "Lailat al-Qadr"],
+				answer: 1
+			},
+
+			{
+				question: "What is the name of the Islamic pilgrimage site that houses the Kaaba?",
+				choices: ["Medina", "Mecca", "Jerusalem", "Baghdad"],
+				answer: 1
+			},
+
+			{
+				question: "What is the name of the Islamic prayer leader?",
+				choices: ["Imam", "Sheikh", "Mullah", "Mufti"],
+				answer: 0
+			},
+
+			{
+				question: "What is the name of the Islamic charity tax?",
+				choices: ["Zakat", "Hajj", "Salah", "Sawm"],
+				answer: 0
+			},
+
+			{
+				question: "What is the name of the Islamic holiday that commemorates the sacrifice of Ibraham (A.S) ?",
+				choices: ["Eid al-Adha", "Eid al-Fitr", "Ashura", "Lailat al-Qadr"],
+				answer: 0
+			},
+
+			{
+				question: "What is the name of the Islamic holy city where the Prophet Muhammad is buried?",
+				choices: ["Mecca", "Medina", "Jerusalem", "Baghdad"],
+				answer: 1
+			},
+			{
+				question: "What is the name of the Islamic month that commemorates the Battle of Badr?",
+				choices: ["Rajab", "Sha'ban", "Ramadan", "Shawwal"],
+				answer: 2
+			},
+
+			{
+				question: "What is the name of the Islamic prayer performed on the night of the 27th of Ramadan?",
+				choices: ["Salat al-Janazah", "Salat al-Istikharah", "Salat al-Tasbih", "Lailat al-Qadr"],
+				answer: 3
+			}, 
+
+			{
+				question: "What is the name of the Islamic month that commemorates the migration of the Prophet Muhammad from Mecca to Medina?",
+				choices: ["Muharram", "Safar", "Rabi' al-awwal", "Rabi' al-thani"],
+				answer: 2
+			},
+
+			{
+				question: "What is the name of the Islamic prayer performed at sunset?",
+				choices: ["Fajr", "Dhuhr", "Asr", "Maghrib"],
+				answer: 3
+			},
+
+
+			{
+				question: "What is the name of the Islamic prayer performed just before sunrise?",
+				choices: ["Fajr", "Dhuhr", "Asr", "Maghrib"],
+				answer: 0
+			}
+		];
+
+		// Set up the initial question and choices
+		var currentQuestion = 0;
+		var points = 0
+		var p = document.getElementById("marks")
+		var per = document.getElementById("circle")
+		showQuestion();
+
+		// Display the current question and choices
+		function showQuestion() {
+			document.getElementById("question").innerHTML = questions[currentQuestion].question;
+
+			var choices = "";
+			for (var i = 0; i < questions[currentQuestion].choices.length; i++) {
+				choices += '<input type="radio" name="answer" value="' + i + '"> ' + questions[currentQuestion].choices[i] + '<br>';
+			}
+			document.getElementById("choices").innerHTML = choices;
+		}
+
+		// Check if the user's answer is correct and move to the next question
+		function checkAnswer() {
+			var userAnswer = document.querySelector('input[name="answer"]:checked').value;
+			if (userAnswer == questions[currentQuestion].answer) {
+				points = ++points
+				p.innerHTML = "You Got " + points + " out Of " + questions.length
+			} else {
+				p.innerHTML = "You Got " + points + " out Of " + questions.length
+			}
+
+			currentQuestion++;
+			if (currentQuestion < questions.length) {
+				showQuestion();
+			} else {
+				alert("You've completed the quiz!");
+				per.innerHTML = Math.round(points / questions.length * 100) + "%"
+				p.style.opacity = '1'
+				per.style.opacity = '1'
+			}
+			if(Math.round(points / questions.length * 100) <= 45){
+				per.style.color = 'red'
+			}
+			else{
+				per.style.color = 'green'
+			}
+		}
+		function restart() {
+			location.reload()
+			points = 0
+		}
+		function show() {
+			if (p.style.opacity == '0') {
+				per.innerHTML = Math.round(points / questions.length * 100) + "%"
+				p.style.opacity = '1'
+			}
+			else{
+				p.style.opacity = '0'
+				per.style.opacity = '0'
+			}
+		}
+	</script>
+</body>
+
+</html>
